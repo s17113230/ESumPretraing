@@ -18,12 +18,15 @@ public class SeatingChartDAO {
     }
 
     public List<SeatingChart> getAllSeats(){
-        String sql = "SELECT * FROM seatingchart";
+        String sql = "SELECT * " +
+                "FROM seatingchart " +
+                "LEFT JOIN `employee` ON `seatingchart`.FLOOR_SEAT_SEQ = `employee`.FLOOR_SEAT_SEQ";
         List<SeatingChart> seatsList = jdbcTemplate.query(sql, (result, rowNum) -> {
             SeatingChart seat = new SeatingChart();
             seat.setFLOOR_SEAT_SEQ(result.getInt("FLOOR_SEAT_SEQ"));
             seat.setFLOOR_NO(result.getInt("FLOOR_NO"));
             seat.setSEAT_NO(result.getInt("SEAT_NO"));
+            seat.setEMP_ID(result.getInt("EMP_ID"));
             return seat;
         });
         return seatsList;

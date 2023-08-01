@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value="/api/1.0")
+@CrossOrigin("http://localhost:8080")
 public class EmployeeController {
 
     @Autowired
@@ -24,7 +25,7 @@ public class EmployeeController {
     }
 
     @PatchMapping("/users")
-    public List<Employee> updateSeatSeqByEmpId(@RequestParam Integer empId, Integer seatSeq){
+    public List<Employee> updateSeatSeqByEmpId(@RequestParam("empId") Integer empId,@RequestParam("seatSeq") Integer seatSeq){
         return employeeService.updateSeatSeqByEmpId(empId, seatSeq);
     }
 }
