@@ -1,4 +1,4 @@
-# ESumPretraing
+# EmployeeSeatingChart
 員工座位表
 
 使用方法
