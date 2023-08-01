@@ -6,6 +6,16 @@ class EmployeeService{
     getEmployees(){
         return axios.get(EMPLOYEE_API_BASE_URL);
     }
+
+    setSeat(emp_id, seat_id){
+        const formdata = new FormData();
+        formdata.append('empId', emp_id);
+        formdata.append('seatSeq', seat_id);
+        return axios.patch(EMPLOYEE_API_BASE_URL,
+                            formdata,
+                            { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
+                        );
+    }
 }
 
 export default new EmployeeService()
