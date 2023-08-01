@@ -85,7 +85,7 @@
                     let employeeSelect = document.getElementById("EmployeesSelection");
                     response.data.forEach(element => {
                         if(element['floor_SEAT_SEQ'] != 0) return;
-                        employeeSelect.options.add(new Option(element['emp_ID']+"-"+element['name'], element['emp_ID']));
+                        employeeSelect.options.add(new Option(element['emp_ID'].toString().padStart(5, '0')+"-"+element['name'], element['emp_ID']));
                     });
                 })
             },
@@ -137,7 +137,7 @@
     function createSeatObject(floorNumber, seatNumber, empId = 0, floor_SEAT_SEQ) {
         const seatName = `${floorNumber}樓: 座位${seatNumber}`;
         const occupied = empId !== 0;
-        const name = occupied ? `${seatName} [員編: ${empId}]` : seatName;
+        const name = occupied ? `${seatName} [員編: ${empId.toString().padStart(5, '0')}]` : seatName;
         const seatseq = floor_SEAT_SEQ;
         return {
             name,
