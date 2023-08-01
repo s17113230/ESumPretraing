@@ -4,6 +4,7 @@ import com.example.esumspring.model.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -30,6 +31,7 @@ public class EmployeeDAO {
         return employeesList;
     }
 
+    @Transactional
     public List<Employee> updateSeatSeqByEmpId(Integer empId, Integer seatSeq){
         String sql = "UPDATE employee SET FLOOR_SEAT_SEQ = ? WHERE EMP_ID = ?";
         jdbcTemplate.update(sql, seatSeq, empId);
